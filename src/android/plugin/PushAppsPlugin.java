@@ -155,8 +155,7 @@ public class PushAppsPlugin extends CordovaPlugin {
                 if (key.startsWith("google.")) {
                     continue;
                 } else if (key.equals("pa")) {
-                    JSONObject paJson = new JSONObject(bundle.getString(key));
-                    json.put(key, paJson);
+                    continue;
                 } else {
                     json.put(key, bundle.get(key));
                 }
@@ -189,6 +188,7 @@ public class PushAppsPlugin extends CordovaPlugin {
 
     // Internal methods
     private boolean internalOnDeviceReady(CallbackContext callbackContext) {
+        checkIntentExtras(cordova.getActivity().getIntent());
         return true;
     }
 
@@ -205,7 +205,7 @@ public class PushAppsPlugin extends CordovaPlugin {
             }
         });
         PushApps.register(getApplicationContext());
-
+        checkIntentExtras(this.cordova.getActivity().getIntent());
         return true;
     }
 
