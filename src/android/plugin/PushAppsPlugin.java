@@ -156,6 +156,8 @@ public class PushAppsPlugin extends CordovaPlugin {
                     continue;
                 } else if (key.equals("pa")) {
                     continue;
+                } else if (key.equals("PAArticle")) {
+                    continue;
                 } else {
                     json.put(key, bundle.get(key));
                 }
