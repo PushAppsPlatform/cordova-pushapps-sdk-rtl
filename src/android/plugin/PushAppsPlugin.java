@@ -198,11 +198,15 @@ public class PushAppsPlugin extends CordovaPlugin {
         PushApps.setGcmListener(getApplicationContext(), new PAGcmListener() {
             @Override
             public void onGcmRegistrationFinished(String token, String errorMessage) {
-                callbackContext.success(token);
+                if (errorMessage != null) {
+                    callbackContext.error(errorMessage);
+                } else {
+                    callbackContext.success(token);
+                }
             }
 
             @Override
-            public void onGcmUnRegistrationFinished(String token, String errorMessage) {
+            public void onGcmUnRegistrationFinished(String errorMessage) {
                 callbackContext.error(errorMessage);
             }
         });
